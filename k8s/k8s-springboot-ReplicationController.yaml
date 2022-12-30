@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: k8s-springboot-series     # Tên của ReplicationController
+spec:
+  replicas: 10                     # Số lượng Pod muốn chạy trên một thời điểm.
+  selector:
+    app: k8s-series               # Label sử dụng để tim các pods để quản lý.
+  template:                       # Phần này định nghĩa pod template để ReplicationController tạo.
+    metadata:
+      name: k8s-springboot-series
+      labels:
+        app: k8s-series
+    spec:
+      containers:
+        - name: k8s-springboot-series
+          image: thanhnb1/k8s-springboot-series:v2
+          ports:
+            - containerPort: 8080
