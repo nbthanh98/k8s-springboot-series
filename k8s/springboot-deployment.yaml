@@ -8,7 +8,7 @@ spec:
   selector:
     matchLabels:
       app: k8s-springboot-series
-  replicas: 1
+  replicas: 3
   strategy:
     rollingUpdate:
       maxSurge: 25%
@@ -21,7 +21,7 @@ spec:
     spec:
       containers:
         - name: k8s-springboot-series
-          image: thanhnb1/k8s-springboot-series:latest
+          image: thanhnb1/k8s-springboot-series:v2
           ports:
             - containerPort: 8080
       restartPolicy: Always
