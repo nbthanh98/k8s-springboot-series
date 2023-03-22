@@ -5,7 +5,7 @@
 - Student service.
 - Payment service.
 
-## 2. Chạy các service với docker-compose
+## 2. Chạy service với docker-compose
 
 ```shell
 docker-compose -f docker/docker-compose up -d
