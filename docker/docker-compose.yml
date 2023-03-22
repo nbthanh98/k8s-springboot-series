@@ -1,0 +1,43 @@
+version: '3'
+services:
+  mysql:
+    image: mysql:5.7
+    container_name: mysql
+    ports:
+      - "3306:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: VNTechies2023
+
+  students-svc:
+    container_name: students
+    image: thanhnb1/students:latest
+    environment:
+      - SERVER_PORT=8080
+      - MYSQL_URL=jdbc:mysql://mysql:3306/students
+      - MYSQL_USERNAME=students
+      - MYSQL_PASSWORD=VNTechies2023
+      - PAYMENT_URI=http://payment:8080
+    ports:
+      - "8080:8080"
+    depends_on:
+      - mysql
+    restart: always
+
+  payment-svc:
+    container_name: payment
+    image: thanhnb1/payment:latest
+    environment:
+      - SERVER_PORT=8080
+      - MYSQL_URL=jdbc:mysql://mysql:3306/payment
+      - MYSQL_USERNAME=payment
+      - MYSQL_PASSWORD=VNTechies2023
+    ports:
+      - "8081:8080"
+    depends_on:
+      - mysql
+    restart: always
+
+volumes:
+  db_data:

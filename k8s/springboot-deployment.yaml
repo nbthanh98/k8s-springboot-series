@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: k8s-springboot-series
+  labels:
+    app: k8s-springboot-series
+spec:
+  selector:
+    matchLabels:
+      app: k8s-springboot-series
+  replicas: 3
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: k8s-springboot-series
+    spec:
+      containers:
+        - name: k8s-springboot-series
+          image: thanhnb1/k8s-springboot-series:v2
+          ports:
+            - containerPort: 8080
+      restartPolicy: Always
