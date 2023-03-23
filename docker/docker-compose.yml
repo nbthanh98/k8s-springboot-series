@@ -13,7 +13,7 @@ services:
 
   students-svc:
     container_name: students
-    image: thanhnb1/students:latest
+    image: thanhnb1/students-service:latest
     environment:
       - SERVER_PORT=8080
       - MYSQL_URL=jdbc:mysql://mysql:3306/students
@@ -28,7 +28,7 @@ services:
 
   payment-svc:
     container_name: payment
-    image: thanhnb1/payment:latest
+    image: thanhnb1/payment-service:latest
     environment:
       - SERVER_PORT=8080
       - MYSQL_URL=jdbc:mysql://mysql:3306/payment
