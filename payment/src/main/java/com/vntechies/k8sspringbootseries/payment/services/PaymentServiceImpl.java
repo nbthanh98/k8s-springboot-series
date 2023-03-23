@@ -27,7 +27,7 @@ public class PaymentServiceImpl implements IPaymentService {
     public PayBillResp payBill(PayBillRequest request) {
         Bill bill = iBillService.getBillBy(request.getBillId());
         if (BillStatus.PAYED.equals(bill.getBillStatus())) {
-            throw new PaymentException("Bill payed!");
+            throw new PaymentException("Bill has been paid!!");
         }
         boolean isAmountEnoughToPayBill = request.getAmount().compareTo(bill.getAmount()) >= 0;
         if (!isAmountEnoughToPayBill) {
