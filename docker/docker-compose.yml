@@ -19,21 +19,21 @@ services:
       - MYSQL_URL=jdbc:mysql://mysql:3306/students
       - MYSQL_USERNAME=students
       - MYSQL_PASSWORD=VNTechies2023
-      - PAYMENT_URI=http://payment:8080
     ports:
       - "8080:8080"
     depends_on:
       - mysql
     restart: always
 
-  payment-svc:
-    container_name: payment
-    image: thanhnb1/payment-service:latest
+  courses-svc:
+    container_name: courses
+    image: thanhnb1/courses-service:latest
     environment:
       - SERVER_PORT=8080
-      - MYSQL_URL=jdbc:mysql://mysql:3306/payment
-      - MYSQL_USERNAME=payment
+      - MYSQL_URL=jdbc:mysql://mysql:3306/courses
+      - MYSQL_USERNAME=courses
       - MYSQL_PASSWORD=VNTechies2023
+      - STUDENTS_URI=http://students:8080
     ports:
       - "8081:8080"
     depends_on:

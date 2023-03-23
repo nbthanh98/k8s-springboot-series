@@ -1,0 +1,13 @@
+server:
+  port: ${SERVER_PORT:8081}
+
+spring:
+  datasource:
+    driverClassName: com.mysql.jdbc.Driver
+    url: ${MYSQL_URL:jdbc:mysql://localhost:3306/students}
+    username: ${MYSQL_USERNAME:students}
+    password: ${MYSQL_PASSWORD:VNTechies2023}
+  jpa:
+    hibernate.ddl-auto: update
+    generate-ddl: true
+    show-sql: true

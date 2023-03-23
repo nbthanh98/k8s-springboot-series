@@ -11,3 +11,8 @@ spring:
     hibernate.ddl-auto: update
     generate-ddl: true
     show-sql: true
+
+clients:
+  services:
+    students:
+      uri: ${STUDENTS_URI:http://localhost:8081}

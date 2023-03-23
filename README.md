@@ -3,7 +3,7 @@
 Đây là source code cho bài viết [K8s-Springboot](https://vntechies.dev/courses/k8s-spring-boot/gioi-thieu). Có hai service:
 
 - Student service.
-- Payment service.
+- Courses service.
 
 ## 2. Chạy service với docker-compose
 
@@ -13,11 +13,31 @@ docker-compose -f docker/docker-compose up -d
 
 ## 3. Test APIs
 
-1. Payment service:
+### 1. Courses service:
+
 ```shell
-curl --location --request GET 'localhost:8081/api/payment/v1/getAllBill'
+# Tao moi Course:
+curl --location --request POST 'localhost:8081/api/courses/v1/createCourse' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "name": "HOC LAM GIAU",
+    "desc": "NEU MUON CO 100 ti THI PHAI THAM GIA NGAY :D",
+    "author": "VNTechies"
+}'
+
+# Join course:
+curl --location --request POST 'localhost:8081/api/courses/v1/joinCourse' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "courseId": "1",
+    "studentId": "1"
+}'
+
+# Get detail course:
+curl --location --request GET 'localhost:8081/api/courses/v1/getCourseDetailBy?courseId=1'
 ```
-2. Students service:
+
+### 2. Students service:
 
 ```shell
 
@@ -33,16 +53,4 @@ curl --location --request POST 'localhost:8080/api/students' \
 
 # Danh sách users:
 curl --location --request GET 'localhost:8080/api/students'
-
-# PayBill:
-curl --location --request POST 'localhost:8080/api/payment/payBill' \
---header 'Content-Type: application/json' \
---data-raw '{
-    "billId": "0cf6b569-f610-408a-a033-76e16ecbeffe",
-    "studentId": "8a4a6d12-dae8-4589-a0b3-a72d9fe48e4c",
-    "amount": 10000000,
-    "fromAccountNo": "123456789",
-    "toAccountNo": "123456789",
-    "transDesc": "THANH TOAN HOA DON"
-}'
 ```

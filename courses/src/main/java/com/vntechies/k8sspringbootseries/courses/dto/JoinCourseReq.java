@@ -4,6 +4,6 @@ import lombok.Data;
 
 @Data
 public class JoinCourseReq {
-    private String courseId;
+    private Long courseId;
     private String studentId;
 }

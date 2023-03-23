@@ -3,10 +3,8 @@ package com.vntechies.k8sspringbootseries.courses.entities;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
-import java.util.UUID;
 
 @Entity
 @Table(name = "courses_members")
@@ -16,11 +14,17 @@ import java.util.UUID;
 public class CoursesMembers {
 
     @Id
-    @GeneratedValue(generator = "UUID")
-    @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
-    @Column(name = "id", updatable = false, nullable = false, columnDefinition = "BINARY(16)")
-    private UUID id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+
+    @Column(name = "course_id")
+    private Long courseId;
 
     @Column(name = "member_id")
-    private String memberId;
+    private Long memberId;
+
+    public CoursesMembers(Long courseId, Long memberId) {
+        this.courseId = courseId;
+        this.memberId = memberId;
+    }
 }

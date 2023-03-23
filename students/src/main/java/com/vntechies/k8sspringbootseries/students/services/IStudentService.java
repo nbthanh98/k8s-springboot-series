@@ -1,12 +1,16 @@
 package com.vntechies.k8sspringbootseries.students.services;
 
 import com.vntechies.k8sspringbootseries.students.dto.CreateStudentRequest;
-import com.vntechies.k8sspringbootseries.students.dto.StudentResp;
+import com.vntechies.k8sspringbootseries.students.dto.StudentDTO;
 
 import java.util.List;
 
 public interface IStudentService {
-    StudentResp createStudent(CreateStudentRequest request);
+    StudentDTO createStudent(CreateStudentRequest request);
 
-    List<StudentResp> getAll();
+    StudentDTO getStudentById(String studentId);
+
+    List<StudentDTO> getStudentsByIds(List<Long> ids);
+
+    List<StudentDTO> getAll();
 }

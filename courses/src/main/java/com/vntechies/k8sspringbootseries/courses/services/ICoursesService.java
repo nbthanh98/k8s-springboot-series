@@ -1,11 +1,14 @@
 package com.vntechies.k8sspringbootseries.courses.services;
 
-import com.vntechies.k8sspringbootseries.courses.dto.CoursesDto;
-import com.vntechies.k8sspringbootseries.courses.dto.CreateCoursesReq;
+import com.vntechies.k8sspringbootseries.courses.dto.CourseDetail;
+import com.vntechies.k8sspringbootseries.courses.dto.CourseDto;
+import com.vntechies.k8sspringbootseries.courses.dto.CreateCourseReq;
 import com.vntechies.k8sspringbootseries.courses.dto.JoinCourseReq;
 
 public interface ICoursesService {
-    CoursesDto createCourses(CreateCoursesReq req);
+    CourseDto createCourse(CreateCourseReq req);
 
-    CoursesDto joinCourses(JoinCourseReq req);
+    CourseDetail getCourseDetailBy(Long courseId);
+
+    CourseDto joinCourse(JoinCourseReq req);
 }

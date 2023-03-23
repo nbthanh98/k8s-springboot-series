@@ -9,11 +9,13 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class BaseResponse<T> {
     private boolean success;
+    private String msg;
     private T data;
 
     public static BaseResponse buildSuccessResp(Object o) {
         BaseResponse baseResponse = new BaseResponse();
         baseResponse.setSuccess(true);
+        baseResponse.setMsg("Success");
         baseResponse.setData(o);
         return baseResponse;
     }
