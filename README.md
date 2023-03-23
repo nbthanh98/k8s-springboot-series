@@ -1,6 +1,6 @@
 
 ## 1. Giới thiệu chung
-Đây là source code của cho bài viết [K8s-Springboot](https://vntechies.dev/courses/k8s-spring-boot/gioi-thieu). Có 2 service:
+Đây là source code cho bài viết [K8s-Springboot](https://vntechies.dev/courses/k8s-spring-boot/gioi-thieu). Có hai service:
 
 - Student service.
 - Payment service.
@@ -9,19 +9,6 @@
 
 ```shell
 docker-compose -f docker/docker-compose up -d
-
-# Truy cập vào container mysql và tạo user, database:
-docker exec -it mysql sh
-mysql -u root -p
-
-CREATE USER 'students'@'%' IDENTIFIED BY 'VNTechies2023';
-CREATE DATABASE students CHARACTER SET utf8 COLLATE utf8_general_ci;
-GRANT ALL ON students.* TO 'students'@'%';
-
-CREATE USER 'payment'@'%' IDENTIFIED BY 'VNTechies2023';
-CREATE DATABASE payment CHARACTER SET utf8 COLLATE utf8_general_ci;
-GRANT ALL ON payment.* TO 'payment'@'%';
-flush privileges;
 ```
 
 ## 3. Test APIs
