@@ -1,6 +1,6 @@
 
 ## 1. Giới thiệu chung
-Đây là source code cho bài viết [K8s-Springboot](https://vntechies.dev/courses/k8s-spring-boot/gioi-thieu). Có hai service:
+Đây là source code dùng demo cho bài viết [K8s-Springboot](https://vntechies.dev/courses/k8s-spring-boot/gioi-thieu). Có hai service:
 
 - Student service.
 - Courses service.
