@@ -1,3 +1,5 @@
+SERVICE_NAME="students-service"
+IMAGE_REGISTRY="thanhnb1"
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 echo -n "Enter Image Tag, or leave blank for 'latest'"
@@ -10,8 +12,8 @@ rm -rf target/
 
 mvn clean package -Dmaven.test.skip=true
 
-docker rmi $(docker images 'thanhnb1/students-service' -q)
+docker rmi $(docker images '$IMAGE_REGISTRY/$SERVICE_NAME' -q)
 
-docker build -t thanhnb1/students-service:$TAG -f $DIR/Dockerfile $DIR
+docker build -t $IMAGE_REGISTRY/$SERVICE_NAME:$TAG -f $DIR/Dockerfile $DIR
 
-docker tag thanhnb1/students-service:latest thanhnb1/students-service:$TAG
+docker tag $IMAGE_REGISTRY/$SERVICE_NAME:latest $IMAGE_REGISTRY/$SERVICE_NAME:$TAG

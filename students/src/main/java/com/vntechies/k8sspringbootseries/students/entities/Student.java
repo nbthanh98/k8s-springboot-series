@@ -8,16 +8,15 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
-
-@Entity
-@Table(name = "students")
 @Data
+@Entity
 @AllArgsConstructor
 @NoArgsConstructor
+@Table(name = "students")
 public class Student {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(name = "fullName")
