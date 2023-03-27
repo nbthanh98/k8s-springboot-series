@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: courses-service
+spec:
+  # Số lượng Pod muốn chạy tại một thời điểm.
+  replicas: 3
+  # Label sử dụng để tìm các pods có cùng labels "app: courses-service" để quản lý.
+  selector:
+    app: courses-service 
+  # Phần này định nghĩa podTemplate để ReplicationController tạo.
+  template: 
+    metadata:
+      name: courses-service
+      # Labels của pod.
+      labels:
+        app: courses-service
+    spec:
+      containers:
+        - name: courses-service
+          image: thanhnb1/courses-service:latest
+          ports:
+            - containerPort: 8080
