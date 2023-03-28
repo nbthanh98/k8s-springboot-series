@@ -1,24 +1,27 @@
-apiVersion: v1
-kind: ReplicationController
+apiVersion: apps/v1
+kind: Deployment
 metadata:
   name: courses-service
+  labels:
+    app: courses-service
 spec:
-  # Số lượng Pod muốn chạy tại một thời điểm.
-  replicas: 3
-  # Label sử dụng để tìm các pods có cùng labels "app: courses-service" để quản lý.
   selector:
-    app: courses-service 
-  # Phần này định nghĩa podTemplate để ReplicationController tạo.
-  template: 
+    matchLabels:
+      app: courses-service
+  replicas: 3
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
     metadata:
-      name: courses-service
-      # Labels của pod.
       labels:
         app: courses-service
     spec:
       containers:
         - name: courses-service
-          image: thanhnb1/courses-service:latest
+          image: thanhnb1/courses-service:v2
           env:
           - name: SERVER_PORT
             value: "8080"
@@ -28,10 +31,11 @@ spec:
             value: "courses"
           - name: MYSQL_PASSWORD
             value: "VNTechies2023"
-            
+
           # Cấu hình URI gọi đến Students service. Trong thực tế sẽ cấu hình đến Object Service trong Kubernetes
           # nhưng vì chưa tìm hiểu đến object Service này (sẽ tìm hiểu trong bài sau) nên sẽ để IP và PORT của pod.
           - name: STUDENTS_URI
             value: http://10.1.28.78:8080
           ports:
             - containerPort: 8080
+      restartPolicy: Always

@@ -7,7 +7,7 @@ metadata:
 spec:
   containers:
     - name: courses-service
-      image: thanhnb1/courses-service:latest
+      image: thanhnb1/courses-service:v2
       env:
       - name: SERVER_PORT
         value: "8080"
