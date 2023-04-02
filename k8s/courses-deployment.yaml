@@ -21,7 +21,7 @@ spec:
     spec:
       containers:
         - name: courses-service
-          image: thanhnb1/courses-service:v2
+          image: thanhnb1/courses-service:latest
           env:
           - name: SERVER_PORT
             value: "8080"
@@ -32,10 +32,19 @@ spec:
           - name: MYSQL_PASSWORD
             value: "VNTechies2023"
 
-          # Cấu hình URI gọi đến Students service. Trong thực tế sẽ cấu hình đến Object Service trong Kubernetes
+          # 1. Cấu hình URI gọi đến Students service. Trong thực tế sẽ cấu hình đến Object Service trong Kubernetes
           # nhưng vì chưa tìm hiểu đến object Service này (sẽ tìm hiểu trong bài sau) nên sẽ để IP và PORT của pod.
+          # - name: STUDENTS_URI
+          #   value: http://10.1.28.78:8080
+
+          # 2. Cấu hình URI gọi đến Students service. Thường sẽ sử dụng DNS của service để cấu hình
+          # vì IP và port của service vẫn có thể thay đổi.
+          # - name: STUDENTS_URI
+          #   value: http://10.152.183.232:80
+
+          # 3. Cấu hình URI gọi đến Students service sử dụng DNS của service.
           - name: STUDENTS_URI
-            value: http://10.1.28.78:8080
+            value: http://students-service
           ports:
             - containerPort: 8080
       restartPolicy: Always

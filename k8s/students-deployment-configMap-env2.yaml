@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: students-service
+  labels:
+    app: students-service
+spec:
+  selector:
+    matchLabels:
+      app: students-service
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        app: students-service
+    spec:
+      containers:
+        - name: students-service
+          image: thanhnb1/students-service:latest
+          env:
+            - name: SERVER_PORT
+              valueFrom:
+                configMapKeyRef:
+                  name: students-cm
+                  key: SERVER_PORT
+            - name: MYSQL_URL
+              valueFrom:
+                configMapKeyRef:
+                  name: students-cm
+                  key: MYSQL_URL
+            - name: MYSQL_USERNAME
+              valueFrom:
+                configMapKeyRef:
+                  name: students-cm
+                  key: MYSQL_USERNAME
+            - name: MYSQL_PASSWORD
+              valueFrom:
+                configMapKeyRef:
+                  name: students-cm
+                  key: MYSQL_PASSWORD
+                 ports:
+                   - containerPort: 8080
+      restartPolicy: Always

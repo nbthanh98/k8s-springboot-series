@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: students-cm
+data:
+  application.yaml: |-
+    server:
+      port: 8080
+
+    spring:
+      datasource:
+        driverClassName: com.mysql.jdbc.Driver
+        url: jdbc:mysql://mysql:3306/students
+        username: students
+        password: VNTechies2023
+      jpa:
+        hibernate.ddl-auto: update
+        generate-ddl: true
+        show-sql: false

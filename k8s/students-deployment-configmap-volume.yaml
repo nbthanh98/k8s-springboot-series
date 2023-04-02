@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: students-service
+  labels:
+    app: students-service
+spec:
+  selector:
+    matchLabels:
+      app: students-service
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        app: students-service
+    spec:
+      containers:
+        - name: students-service
+          image: thanhnb1/students-service:latest
+          ports:
+            - containerPort: 8080
+          volumeMounts:
+            - mountPath: /config           
+              name: application-config     
+              readOnly: true               
+      volumes:
+        - name: application-config       
+          configMap:                     
+            name: students-cm           
+            items:
+            - key: application.yaml
+              path: application.yaml              
+      restartPolicy: Always
