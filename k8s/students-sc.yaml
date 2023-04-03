@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: Secret
+metadata:
+  name: students-sc
+type: Opaque
+data:
+  # Thông tin cấu hình ở dạng encode Base64.
+  MYSQL_USERNAME: c3R1ZGVudHM=
+  MYSQL_PASSWORD: Vk5UZWNoaWVzMjAyMw==

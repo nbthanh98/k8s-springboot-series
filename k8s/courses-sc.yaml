@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: Secret
+metadata:
+  name: courses-sc
+type: Opaque
+data:
+  username: anNtaXRo
+  password: bXlzZWNyZXRwYXNzd29yZA==
