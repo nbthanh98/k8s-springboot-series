@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: Secret
+metadata:
+  name: students-sc-volume
+type: Opaque
+data:
+  app.firstSecret: Zmlyc3Qgc2VjcmV0IHNwcmluZyBib290IGRlbW8u
