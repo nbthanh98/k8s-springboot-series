@@ -37,5 +37,5 @@ env:
     enabled: true
     name: student-sc
     data:
-      MYSQL_USERNAME: "students"
-      MYSQL_PASSWORD: "VNTechies2023"
+      MYSQL_USERNAME: "c3R1ZGVudHM="
+      MYSQL_PASSWORD: "VlNOZXJpZXMgMjAyMw=="
