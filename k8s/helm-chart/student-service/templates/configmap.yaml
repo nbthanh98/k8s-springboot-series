@@ -1,0 +1,12 @@
+{{- if .Values.env.configMap.enabled }}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Values.env.configMap.name }}
+  labels:
+    app: {{ include "student-service.name" . }}
+data:
+  {{- range $key, $value := .Values.env.configMap.data }}
+  {{ $key }}: {{ $value | quote }}
+  {{- end }}
+{{- end }}

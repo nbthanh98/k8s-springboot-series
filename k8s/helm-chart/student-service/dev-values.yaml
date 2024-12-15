@@ -1,0 +1,41 @@
+image:
+  repository: thanhnb1/students-service
+  pullPolicy: IfNotPresent
+  tag: "k8s-probe"
+
+# Cấu hình service:
+service:
+  type: ClusterIP
+  port: 8080
+
+# Cấu hình healcheck.
+livenessProbe:
+  httpGet:
+    path: /actuator/health/liveness
+    port: 8080
+  initialDelaySeconds: 15
+  periodSeconds: 5
+  timeoutSeconds: 30
+
+readinessProbe:
+    httpGet:
+      path: /actuator/health/readiness
+      port: 8080
+    initialDelaySeconds: 15
+    periodSeconds: 5
+    timeoutSeconds: 30
+
+# Cấu hình biến môi trường.
+env:
+  configMap:
+    enabled: true
+    name: student-cm
+    data:
+      SERVER_PORT: "8080"
+      MYSQL_URL: "jdbc:mysql://mysql:3306/students"
+  configSecret:
+    enabled: true
+    name: student-sc
+    data:
+      MYSQL_USERNAME: "students"
+      MYSQL_PASSWORD: "VNTechies2023"
