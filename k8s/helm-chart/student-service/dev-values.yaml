@@ -37,5 +37,5 @@ env:
     enabled: true
     name: student-sc
     data:
-      MYSQL_USERNAME: c3R1ZGVudHMK
-      MYSQL_PASSWORD: VlNOZXRoaWVzMjAyMw==
+      MYSQL_USERNAME: c3R1ZGVudHM=
+      MYSQL_PASSWORD: Vk5UZWNoaWVzMjAyMw==
